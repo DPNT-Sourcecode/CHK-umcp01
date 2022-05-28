@@ -14,6 +14,7 @@ class DealType(Enum):
     """
     Enum that stores the various types of offer available at checkout
     """
+
     MULTI_BUY = 1
     FREE_ITEM = 2
 
@@ -28,7 +29,10 @@ COSTS: dict = {
     "B": {"deals": {DealType.MULTI_BUY: [{"count": 2, "cost": 45}]}, "cost": 15},
     "C": {"cost": 20},
     "D": {"cost": 15},
-    "E": {"cost": 40, "deals": {DealType.FREE_ITEM: [{"count": 2, "free_item_sku": "B"}], "cost": 30}}
+    "E": {
+        "cost": 40,
+        "deals": {DealType.FREE_ITEM: [{"count": 2, "free_item_sku": "B"}], "cost": 30},
+    },
 }
 
 
@@ -59,6 +63,10 @@ def checkout(skus: str) -> int:
     return total_cost
 
 
+def calculate_free_items(code_counts: DefaultDict):
+    for code, count in code_counts.items():
+
+
 def calculate_cost(code: str, count: int) -> int:
     """
     Calculates total cost of a certain count of a single sku code
@@ -87,6 +95,7 @@ def calculate_cost(code: str, count: int) -> int:
         return code_cost
 
     return count * cost_data["cost"]
+
 
 
 
