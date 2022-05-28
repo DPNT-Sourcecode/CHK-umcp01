@@ -5,7 +5,7 @@
 # noinspection PyShadowingBuiltins,PyUnusedLocal
 def compute(number_1: int, number_2: int) -> int:
     """
-    Computes the sum of two positive integers
+    Computes the sum of two positive integers.
     Both numbers must be between 0-100.
 
     :param number_1: The first number to sum.
@@ -34,5 +34,6 @@ def compute(number_1: int, number_2: int) -> int:
         )
 
     return number_1 + number_2
+
 
 
