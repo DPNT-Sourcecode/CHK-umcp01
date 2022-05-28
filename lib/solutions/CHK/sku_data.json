@@ -1,0 +1,47 @@
+{
+    "A": {
+        "deals": {
+            "MULTI_BUY": [{
+                "count": 5,
+                "cost": 200
+            }, {
+                "count": 3,
+                "cost": 130
+            }]
+        },
+        "cost": 50
+    },
+    "B": {
+        "deals": {
+            "MULTI_BUY": [{
+                "count": 2,
+                "cost": 45
+            }]
+        },
+        "cost": 30
+    },
+    "C": {
+        "cost": 20
+    },
+    "D": {
+        "cost": 15
+    },
+    "E": {
+        "cost": 40,
+        "deals": {
+            "FREE_ITEM": [{
+                "count": 2,
+                "free_item_sku": "B"
+            }]
+        }
+    },
+    "F": {
+        "cost": 10,
+        "deals": {
+            "FREE_ITEM": [{
+                "count": 3,
+                "free_item_sku": "F"
+            }]
+        }
+    }
+}
