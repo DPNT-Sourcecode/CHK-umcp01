@@ -8,7 +8,6 @@
 import copy
 from collections import defaultdict
 from enum import Enum
-from typing import DefaultDict
 
 
 class DealType(Enum):
@@ -51,14 +50,14 @@ def checkout(skus: str) -> int:
     if not isinstance(skus, str):
         return -1
 
-    code_counts: DefaultDict = defaultdict(int)
+    code_counts: dict = defaultdict(int)
 
     for code in skus:
         if not code in COSTS:
             return -1
         code_counts[code] += 1
 
-    code_counts : dict = calculate_free_items(code_counts)
+    code_counts = calculate_free_items(code_counts)
 
     total_cost = 0
     for code, count in code_counts.items():
@@ -120,12 +119,3 @@ def calculate_cost(code: str, count: int) -> int:
         return code_cost
 
     return count * cost_data["cost"]
-
-
-
-
-
-
-
-
-
