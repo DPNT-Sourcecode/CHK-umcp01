@@ -8,8 +8,8 @@
 import copy
 import json
 from collections import defaultdict
-from pathlib import Path
 from itertools import permutations
+from pathlib import Path
 
 
 class SKUData:
@@ -42,6 +42,8 @@ class SKUData:
 
         code_counts_calculated = copy.deepcopy(code_counts)
 
+        self._calculate_group_buy(code_counts_calculated)
+
         for code, count in code_counts.items():
             if not code in self.deals[self.deal_types["free_item"]]:
                 continue
@@ -55,10 +57,15 @@ class SKUData:
         return code_counts_calculated
 
     def _calculate_group_buy(self, code_counts: dict):
-
         for group_buy in self.deals["GROUP_BUY"]:
             for group_buy_ids in permutations(group_buy["ids"], group_buy["count"]):
-                if all(x in code_counts.keys() for x in group_buy_ids)
+                if not all(x in code_counts.keys() for x in group_buy_ids):
+                    continue
+                for id in group_buy_ids:
+                    code_counts[id] = code_counts[id] - 1
+                    if code_counts[id] <= 0:
+                        code_counts.erase(id)
+                self._calculate_group_buy(code_counts)
 
     def _calculate_multi_buy(self, code: str, count: int):
         cost_data: dict = self.data[code]
@@ -85,7 +92,7 @@ class SKUData:
         :rtype: int
         """
         if code in self.deals[self.deal_types["multi_buy"]]:
-            return _calculate_multi_buy(code, count)
+            return self._calculate_multi_buy(code, count)
 
         cost_data: dict = self.data[code]
         return count * cost_data["cost"]
@@ -132,3 +139,4 @@ def checkout(skus: str) -> int:
 
     sku_data = SKUData()
     return sku_data.calculate_cost(skus)
+
