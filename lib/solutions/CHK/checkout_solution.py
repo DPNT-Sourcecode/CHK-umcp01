@@ -72,9 +72,9 @@ class SKUData:
 
         found_deal = False
         for group_buy in self.deals["GROUP_BUY"]:
-            check_ids = calculated_items
-            for group_buy_ids in product(group_buy["ids"], repeat=group_buy["count"]):
 
+            for group_buy_ids in product(group_buy["ids"], repeat=group_buy["count"]):
+                check_ids = calculated_items.copy()
                 ids_verified = False
                 print(group_buy_ids)
                 print(check_ids)
@@ -83,7 +83,6 @@ class SKUData:
                         check_ids.remove(id)
                     else:
                         ids_verified = False
-                        break
 
                 if not ids_verified:
                     print("Ids failed to verify")
@@ -171,6 +170,7 @@ def checkout(skus: str) -> int:
 
     sku_data = SKUData()
     return sku_data.calculate_cost(skus)
+
 
 
 
