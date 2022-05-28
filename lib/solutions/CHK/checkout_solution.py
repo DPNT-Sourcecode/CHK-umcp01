@@ -6,9 +6,9 @@
 # skus = unicode string
 
 import copy
+import json
 from collections import defaultdict
 from enum import Enum
-import json
 
 
 class DealType(Enum):
@@ -19,7 +19,8 @@ class DealType(Enum):
     MULTI_BUY = 1
     FREE_ITEM = 2
 
-class SKUData():
+
+class SKUData:
 
     data: dict
 
@@ -47,11 +48,11 @@ class SKUData():
             for deal in cost_data["deals"][DealType.FREE_ITEM]:
                 code_counts_calculated[deal["free_item_sku"]] = max(
                     0,
-                    code_counts_calculated[deal["free_item_sku"]] - count // deal["count"],
+                    code_counts_calculated[deal["free_item_sku"]]
+                    - count // deal["count"],
                 )
 
         return code_counts_calculated
-
 
     def calculate_cost(self, code: str, count: int) -> int:
         """
@@ -82,6 +83,29 @@ class SKUData():
 
         return count * cost_data["cost"]
 
+    def calculate_cost(self, skus) -> int:
+        """
+        Converts a string of SKU Stock Keeping Units to their total cost,
+        checking for applicable deals
+
+        :param skus: An iterable containing SKU Stock Keeping Unit codes
+        :return: The total cost of the SKU Stock Keeping Units
+                or -1 if invalid input is detected
+        :rtype: int
+        """
+        code_counts: dict = defaultdict(int)
+
+        for code in skus:
+            if not code in self.data:
+                return -1
+            code_counts[code] += 1
+
+        code_counts = self.calculate_free_items(code_counts)
+
+        total_cost = 0
+        for code, count in code_counts.items():
+            total_cost += self.calculate_cost(code, count)
+        return total_cost
 
 
 def checkout(skus: str) -> int:
@@ -96,24 +120,11 @@ def checkout(skus: str) -> int:
     :rtype: int
     """
 
-
-
     if not isinstance(skus, str):
         return -1
 
-    code_counts: dict = defaultdict(int)
-
-    for code in skus:
-        if not code in sku_data:
-            return -1
-        code_counts[code] += 1
-
-    code_counts = calculate_free_items(code_counts)
-
-    total_cost = 0
-    for code, count in code_counts.items():
-        total_cost += calculate_cost(code, count)
-    return total_cost
+    sku_data = SKUData()
+    return sku_data.calculate_cost(skus)
 
 
 
