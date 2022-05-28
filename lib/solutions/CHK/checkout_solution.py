@@ -55,8 +55,10 @@ class SKUData:
         return code_counts_calculated
 
     def _calculate_group_buy(self, code_counts: dict):
+
         for group_buy in self.deals["GROUP_BUY"]:
-            for group_buy_ids in permutations(group_buy["ids"])
+            for group_buy_ids in permutations(group_buy["ids"], group_buy["count"]):
+                if all(x in code_counts.keys() for x in group_buy_ids)
 
     def _calculate_multi_buy(self, code: str, count: int):
         cost_data: dict = self.data[code]
@@ -130,8 +132,3 @@ def checkout(skus: str) -> int:
 
     sku_data = SKUData()
     return sku_data.calculate_cost(skus)
-
-
-
-
-
