@@ -42,9 +42,9 @@ class SKUData:
         code_counts_calculated = copy.deepcopy(code_counts)
 
         for code, count in code_counts.items():
-            if not code in self.deals[self.deal_types.free_item]:
+            if not code in self.deals[self.deal_types["free_item"]]:
                 continue
-            for deal in self.deals[self.deal_types.free_item][code]:
+            for deal in self.deals[self.deal_types["free_item"]][code]:
                 code_counts_calculated[deal["free_item_sku"]] = max(
                     0,
                     code_counts_calculated[deal["free_item_sku"]]
@@ -71,11 +71,9 @@ class SKUData:
         if code in self.deals[self.deal_types["multi_buy"]]:
             code_cost = 0
             remainder = count
-            deals = self.deals[self.deal_types.multi_buy][code]
-            if self.deal_types["multi_buy"] in deals:
-                for deal in deals[self.deal_types["multi_buy"]]:
-                    code_cost += (remainder // deal["count"]) * deal["cost"]
-                    remainder = remainder % deal["count"]
+            for deal in self.deals[self.deal_types["multi_buy"]][code]:
+                code_cost += (remainder // deal["count"]) * deal["cost"]
+                remainder = remainder % deal["count"]
             code_cost += remainder * cost_data["cost"]
 
             return code_cost
@@ -124,5 +122,6 @@ def checkout(skus: str) -> int:
 
     sku_data = SKUData()
     return sku_data.calculate_cost(skus)
+
 
 
