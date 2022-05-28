@@ -12,5 +12,6 @@ class TestSum:
 
     def test_input_greater_than_100(self):
         with pytest.raises(ValueError):
-            sum_solution.compute(100, 2)
+            sum_solution.compute(101, 2)
+
 
