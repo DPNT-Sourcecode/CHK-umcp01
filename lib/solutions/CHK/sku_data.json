@@ -69,11 +69,11 @@
         "cost": 60
     },
     "K": {
-        "cost": 80,
+        "cost": 70,
         "deals": {
             "MULTI_BUY": [{
                 "count": 2,
-                "cost": 150
+                "cost": 120
             }]
         }
     },
@@ -162,3 +162,4 @@
         "cost": 50
     }
 }
+
