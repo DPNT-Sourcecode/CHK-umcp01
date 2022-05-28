@@ -18,12 +18,15 @@ class SKUData:
     """
 
     data: dict
+    deals: dict
     data_file_path = Path(__file__).parent.absolute() / "sku_data.json"
+    deals_file_path = Path(__file__).parent.absolute() / "sku_deals.json"
 
     deal_types = {"free_item": "FREE_ITEM", "multi_buy": "MULTI_BUY"}
 
     def __init__(self) -> None:
         self.data = json.loads(self.data_file_path.read_bytes())
+        self.deals = json.loads(self.deals_file_path.read_bytes())
 
     def _calculate_free_items(self, code_counts: dict) -> dict:
         """
@@ -125,3 +128,4 @@ def checkout(skus: str) -> int:
 
     sku_data = SKUData()
     return sku_data.calculate_cost(skus)
+

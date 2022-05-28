@@ -11,8 +11,7 @@
             "count": 2,
             "cost": 45
         }],
-        "H": [
-            {
+        "H": [{
                 "count": 10,
                 "cost": 80
             },
@@ -22,9 +21,24 @@
             }
         ],
         "K": [{
-                "count": 2,
-                "cost": 120
-            }]
+            "count": 2,
+            "cost": 120
+        }],
+        "P": [{
+            "count": 5,
+            "cost": 200
+        }],
+        "Q": [{
+            "count": 3,
+            "cost": 80
+        }],
+        "V": [{
+            "count": 3,
+            "cost": 130
+        }, {
+            "count": 2,
+            "cost": 90
+        }]
     },
     "FREE_ITEM": {
         "E": [{
@@ -38,6 +52,15 @@
         "N": [{
             "count": 3,
             "free_item_sku": "M"
+        }],
+        "R": [{
+            "count": 3,
+            "free_item_sku": "Q"
+        }],
+        "U": [{
+            "count": 4,
+            "free_item_sku": "U"
         }]
     }
 }
+
