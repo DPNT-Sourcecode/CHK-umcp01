@@ -12,15 +12,6 @@ from enum import Enum
 from pathlib import Path
 
 
-class DealType(Enum):
-    """
-    Enum that stores the various types of offer available at checkout
-    """
-
-    MULTI_BUY = 1
-    FREE_ITEM = 2
-
-
 class SKUData:
 
     data: dict
@@ -44,9 +35,9 @@ class SKUData:
 
         for code, count in code_counts.items():
             cost_data: dict = self.data[code]
-            if not ("deals" in cost_data and DealType.FREE_ITEM in cost_data["deals"]):
+            if not ("deals" in cost_data and "FREE_ITEM" in cost_data["deals"]):
                 continue
-            for deal in cost_data["deals"][DealType.FREE_ITEM]:
+            for deal in cost_data["deals"]["FREE_ITEM"]:
                 code_counts_calculated[deal["free_item_sku"]] = max(
                     0,
                     code_counts_calculated[deal["free_item_sku"]]
@@ -74,8 +65,8 @@ class SKUData:
             code_cost = 0
             remainder = count
             deals = cost_data["deals"]
-            if DealType.MULTI_BUY in deals:
-                for deal in deals[DealType.MULTI_BUY]:
+            if "MULTI_BUY" in deals:
+                for deal in deals["MULTI_BUY"]:
                     code_cost += (remainder // deal["count"]) * deal["cost"]
                     remainder = remainder % deal["count"]
             code_cost += remainder * cost_data["cost"]
@@ -126,3 +117,4 @@ def checkout(skus: str) -> int:
 
     sku_data = SKUData()
     return sku_data.calculate_cost(skus)
+
