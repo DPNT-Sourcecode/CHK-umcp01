@@ -9,6 +9,14 @@ VALID_INPUT = (
     "C",
     "D"
 )
+
+COSTS = {
+    "A": {"deal":{"count": 3, "value": 130}, "cost": 50},
+    "B": {"deal": {"count": 2, "value": 45}, "cost": 30},
+    "C": {"cost": 20},
+    "D": {"cost": 15}
+}
+
 def checkout(skus: str) -> int:
     if not isinstance(skus, str):
         return -1
@@ -20,7 +28,14 @@ def checkout(skus: str) -> int:
             return -1
         code_counts[code] += 1
 
+    total_cost = 0
+    for code, count in code_counts.items():
+
+
+
+
     raise NotImplementedError()
+
 
 
 
