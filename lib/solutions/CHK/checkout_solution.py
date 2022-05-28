@@ -35,7 +35,7 @@ COSTS: dict = {
     },
     "F": {
         "cost": 10,
-        "deals": {DealType.FREE_ITEM: [{"count": 2, "free_item_sku": "F"}]},
+        "deals": {DealType.FREE_ITEM: [{"count": 3, "free_item_sku": "F"}]},
     },
 }
 
@@ -123,4 +123,5 @@ def calculate_cost(code: str, count: int) -> int:
         return code_cost
 
     return count * cost_data["cost"]
+
 

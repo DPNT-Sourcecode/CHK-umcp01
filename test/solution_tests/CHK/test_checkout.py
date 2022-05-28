@@ -7,7 +7,7 @@ from solutions.CHK.checkout_solution import checkout
 
 
 @pytest.mark.parametrize(
-    "skus,expected", [("A", 50), ("B", 30), ("C", 20), ("D", 15), ("E", 40)]
+    "skus,expected", [("A", 50), ("B", 30), ("C", 20), ("D", 15), ("E", 40), ("F", 10)]
 )
 def test_prices(skus, expected):
     """
@@ -28,8 +28,10 @@ def test_prices(skus, expected):
         ("BBB", 75),
         ("EEBBB", 125),
         ("EEBBBAA", 225),
+        ("FF", 20),
         ("FFF", 20),
         ("FFFF", 20),
+        ("FFFFF", 30),
     ],
 )
 def test_offers(skus, expected):
@@ -51,4 +53,5 @@ def test_invalid_input_type():
     Tests that incorrect input types return -1
     """
     assert checkout(1) == -1
+
 
