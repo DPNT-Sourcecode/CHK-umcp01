@@ -1,3 +1,7 @@
+"""
+    Contains implementation of a sum function
+"""
+
 # noinspection PyShadowingBuiltins,PyUnusedLocal
 def compute(number_1: int, number_2: int) -> int:
     """
@@ -19,5 +23,3 @@ def compute(number_1: int, number_2: int) -> int:
         raise ValueError(f"{number_1} must be greater than 0 and less than 100.")
 
     return number_1 + number_2
-
-
