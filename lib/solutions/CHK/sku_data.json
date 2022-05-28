@@ -65,10 +65,9 @@
     "K": {"cost": 60, "deals":{"MULTI_BUY":[{"count": 2, "cost": 150}]}},
     "L": {"cost": 90},
     "M": {"cost": 15},
-    "N": {"cost": 40}, "deals": {"FREE_ITEM":[{"count": 3, "free_item_sku": "M"}]}
-    "J": {"cost": 60},
-    "J": {"cost": 60},
-    "J": {"cost": 60},
+    "N": {"cost": 40}, "deals": {"FREE_ITEM":[{"count": 3, "free_item_sku": "M"}]}},
+    "O": {"cost": 10},
+    "P": {"cost": 50, "deals": {"MULTI_BUY":[{"count": 5, "cost": 200}]}
     "J": {"cost": 60},
     "J": {"cost": 60},
     "J": {"cost": 60},
@@ -99,5 +98,6 @@
 | Y    | 10    |                        |
 | Z    | 50    |                        |
 +------+-------+------------------------+
+
 
 
