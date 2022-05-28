@@ -8,7 +8,7 @@
 from collections import defaultdict
 from typing import DefaultDict
 
-COSTS : dict = {
+COSTS: dict = {
     "A": {"deal": {"count": 3, "cost": 130}, "cost": 50},
     "B": {"deal": {"count": 2, "cost": 45}, "cost": 30},
     "C": {"cost": 20},
@@ -48,11 +48,3 @@ def checkout(skus: str) -> int:
             total_cost += count * cost_data["cost"]
 
     return total_cost
-
-
-
-
-
-
-
-
