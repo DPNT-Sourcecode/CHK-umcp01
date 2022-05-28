@@ -13,7 +13,8 @@ def hello(friend_name) -> str:
     :return: A string greeting, "Hellow World!"
     :rtype: str
     """
-    return "Hello World!"
+    return "Hello, World!"
+
 
 
 

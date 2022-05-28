@@ -25,7 +25,8 @@ def test_correct_output():
     tests that the printed output is correct
     """
     out = hello_solution.hello("William")
-    assert out == "Hello World!"
+    assert out == "Hello, World!"
+
 
 
 
