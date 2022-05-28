@@ -74,20 +74,15 @@ class SKUData:
         for group_buy in self.deals["GROUP_BUY"]:
             for group_buy_ids in product(group_buy["ids"], repeat=group_buy["count"]):
                 check_ids = calculated_items.copy()
-                ids_verified = False
+                ids_verified = True
                 for id in group_buy_ids:
-                    print(id, check_ids)
                     if id in check_ids:
                         check_ids.remove(id)
                     else:
-                        print("Not verified")
                         ids_verified = False
 
                 if not ids_verified:
-                    print("Ids failed to verify")
                     continue
-
-                print(f"ids verified: {group_buy_ids} in {calculated_items}")
 
                 found_deal = True
                 for id in group_buy_ids:
@@ -95,6 +90,7 @@ class SKUData:
                     code_counts[id] = code_counts[id] - 1
                     if code_counts[id] <= 0:
                         code_counts.pop(id)
+                code_counts["GROUP_BUY"] += 45
 
         if found_deal:
             self._calculate_group_buy(code_counts, calculated_items)
@@ -151,7 +147,7 @@ class SKUData:
         total_cost = 0
         for code, count in code_counts.items():
             total_cost += self._calculate_sku_count_cost(code, count)
-        return total_cost
+        return total_cost + code_counts.get("GROUP_BUY", 0)
 
 
 def checkout(skus: str) -> int:
@@ -171,6 +167,7 @@ def checkout(skus: str) -> int:
 
     sku_data = SKUData()
     return sku_data.calculate_cost(skus)
+
 
 
 
