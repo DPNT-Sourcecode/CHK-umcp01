@@ -62,7 +62,7 @@ def test_prices(skus, expected):
         ("FFFFF", 40),
         ("HHHHH", 45),
         ("HHHHHHHHHH", 80),
-        ("KK", 150),
+        ("KK", 120),
         ("NNM", 95),
         ("NNNM", 120),
         ("PPPPP", 200),
@@ -93,3 +93,4 @@ def test_invalid_input_type():
     Tests that incorrect input types return -1
     """
     assert checkout(1) == -1
+
