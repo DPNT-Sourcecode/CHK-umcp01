@@ -9,6 +9,7 @@ import copy
 import json
 from collections import defaultdict
 from enum import Enum
+from pathlib import Path
 
 
 class DealType(Enum):
@@ -23,10 +24,10 @@ class DealType(Enum):
 class SKUData:
 
     data: dict
+    data_file_path = Path(__file__).parent.absolute() / "sku_data.json"
 
     def __init__(self) -> None:
-        f = open("sku_data.json")
-        data = json.load(f)
+        data = json.loads(self.data_file_path.read_bytes())
 
     def calculate_free_items(self, code_counts: dict) -> dict:
         """
@@ -125,6 +126,7 @@ def checkout(skus: str) -> int:
 
     sku_data = SKUData()
     return sku_data.calculate_cost(skus)
+
 
 
 
