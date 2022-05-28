@@ -26,7 +26,7 @@ COSTS: dict = {
         },
         "cost": 50,
     },
-    "B": {"deals": {DealType.MULTI_BUY: [{"count": 2, "cost": 45}]}, "cost": 15},
+    "B": {"deals": {DealType.MULTI_BUY: [{"count": 2, "cost": 45}]}, "cost": 30},
     "C": {"cost": 20},
     "D": {"cost": 15},
     "E": {
@@ -57,6 +57,8 @@ def checkout(skus: str) -> int:
             return -1
         code_counts[code] += 1
 
+    calculate_free_items(code_counts)
+
     total_cost = 0
     for code, count in code_counts.items():
         total_cost += calculate_cost(code, count)
@@ -64,13 +66,23 @@ def checkout(skus: str) -> int:
 
 
 def calculate_free_items(code_counts: DefaultDict):
+    """
+    Checks for offers that include free items,
+    removing them from the count if applicable
+
+    :param code_counts: a dictionary of code SKU to count pairs
+    :type code_counts: DefaultDict
+    """
     for code, count in code_counts.items():
         cost_data: dict = COSTS[code]
         if not ("deals" in cost_data and DealType.FREE_ITEM in cost_data["deals"]):
             continue
 
         deal = cost_data["deals"][DealType.FREE_ITEM]
-        code_counts[deal["free_item_sku"]] = max(0, code_counts[deal["free_item_sku"]] - count // deal["count"])
+        code_counts[deal["free_item_sku"]] = max(
+            0, code_counts[deal["free_item_sku"]] - count // deal["count"]
+        )
+
 
 def calculate_cost(code: str, count: int) -> int:
     """
@@ -100,6 +112,7 @@ def calculate_cost(code: str, count: int) -> int:
         return code_cost
 
     return count * cost_data["cost"]
+
 
 
 
