@@ -9,12 +9,7 @@ from collections import defaultdict
 from typing import DefaultDict
 
 COSTS: dict = {
-    "A": {"deals":
-        [
-            {"count": 5, "cost": 200},
-            {"count": 3, "cost": 130}
-        ],
-        "cost": 50},
+    "A": {"deals": [{"count": 5, "cost": 200}, {"count": 3, "cost": 130}], "cost": 50},
     "B": {"deals": {"count": 2, "cost": 45}, "cost": 30},
     "C": {"cost": 20},
     "D": {"cost": 15},
@@ -45,12 +40,15 @@ def checkout(skus: str) -> int:
     total_cost = 0
     for code, count in code_counts.items():
         cost_data: dict = COSTS[code]
-        if "deal" in cost_data:
-            total_cost += (
-                (count // cost_data["deal"]["count"]) * cost_data["deal"]["cost"]
-            ) + (count % cost_data["deal"]["count"]) * cost_data["cost"]
+        if "deals" in cost_data:
+            remainder = count
+            for deal in cost_data["deals"]:
+                total_cost += (count // deal["count"]) * deal["cost"]
+                remainder = count % cost_data["deal"]["count"]
+            total_cost += remainder * cost_data["cost"]
         else:
             total_cost += count * cost_data["cost"]
 
     return total_cost
+
 

@@ -15,7 +15,15 @@ def test_prices(skus, expected):
 
 
 @pytest.mark.parametrize(
-    "skus,expected", [("AAA", 130), ("BB", 45), ("AAAAA", 230), ("BBB", 75)]
+    "skus,expected",
+    [
+        ("AAA", 130),
+        ("AA", 100),
+        ("AAAAA", 200),
+        ("AAAAAAAA", 230),
+        ("BB", 45),
+        ("BBB", 75),
+    ],
 )
 def test_offers(skus, expected):
     """
@@ -36,3 +44,4 @@ def test_invalid_input_type():
     Tests that incorrect input types return -1
     """
     assert checkout(1) == -1
+
