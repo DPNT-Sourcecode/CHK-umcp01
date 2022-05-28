@@ -1,3 +1,7 @@
+"""
+    Contains implementation of a checkout function.
+"""
+
 # noinspection PyUnusedLocal
 # skus = unicode string
 
@@ -12,6 +16,16 @@ COSTS = {
 
 
 def checkout(skus: str) -> int:
+    """
+    Converts a string of SKU Stock Keeping Units to their total cost,
+    checking for applicable deals
+
+    :param skus: A string containing SKU Stock Keeping Units
+    :type skus: str
+    :return: The total cost of the SKU Stock Keeping Units
+             or -1 if invalid input is detected
+    :rtype: int
+    """
     if not isinstance(skus, str):
         return -1
 
@@ -33,6 +47,7 @@ def checkout(skus: str) -> int:
             total_cost += count * cost_data["cost"]
 
     return total_cost
+
 
 
 

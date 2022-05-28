@@ -2,6 +2,8 @@
     Contains tests for solutions.CHK module
 """
 
+import pytest
+from solutions.CHK.checkout_solution import checkout
 
 """
     +------+-------+----------------+
@@ -13,9 +15,6 @@
     | D    | 15    |                |
     +------+-------+----------------+
 """
-
-import pytest
-from solutions.CHK.checkout_solution import checkout
 
 
 @pytest.mark.parametrize("skus,expected", [("A", 50), ("B", 30), ("C", 20), ("D", 15)])
@@ -36,4 +35,5 @@ def test_invalid_input():
 
 def test_invalid_input_type():
     assert checkout(1) == -1
+
 
