@@ -25,9 +25,10 @@ COSTS: dict = {
         },
         "cost": 50,
     },
-    "B": {"deals": {DealType.MULTI_BUY: [{"count": 2, "cost": 45}]}, "cost": 30},
+    "B": {"deals": {DealType.MULTI_BUY: [{"count": 2, "cost": 45}]}, "cost": 15},
     "C": {"cost": 20},
     "D": {"cost": 15},
+    "E": {"cost": 40, "deals": {DealType.FREE_ITEM: [{"count": 2, "free_item_sku": "B"}], "cost": 30}}
 }
 
 
@@ -86,5 +87,6 @@ def calculate_cost(code: str, count: int) -> int:
         return code_cost
 
     return count * cost_data["cost"]
+
 
 
