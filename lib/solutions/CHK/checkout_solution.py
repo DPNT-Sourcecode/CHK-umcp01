@@ -65,7 +65,12 @@ def checkout(skus: str) -> int:
 
 def calculate_free_items(code_counts: DefaultDict):
     for code, count in code_counts.items():
+        cost_data: dict = COSTS[code]
+        if not ("deals" in cost_data and DealType.FREE_ITEM in cost_data["deals"]):
+            continue
 
+        deal = cost_data["deals"][DealType.FREE_ITEM]
+        code_counts[deal["free_item_sku"]] = max(0, code_counts[deal["free_item_sku"]] - count // deal["count"])
 
 def calculate_cost(code: str, count: int) -> int:
     """
@@ -95,6 +100,7 @@ def calculate_cost(code: str, count: int) -> int:
         return code_cost
 
     return count * cost_data["cost"]
+
 
 
 
