@@ -65,7 +65,7 @@ class SKUData:
                 for _ in range(count):
                     items.append(sku)
 
-        if not items or len(items) < 3:
+        if not items:
             return
 
         calculated_items = items
@@ -94,7 +94,7 @@ class SKUData:
                     if code_counts[id] <= 0:
                         code_counts.pop(id)
 
-        if found_deal and len(calculated_items) > 2:
+        if found_deal:
             self._calculate_group_buy(code_counts, calculated_items)
 
     def _calculate_multi_buy(self, code: str, count: int):
@@ -169,6 +169,7 @@ def checkout(skus: str) -> int:
 
     sku_data = SKUData()
     return sku_data.calculate_cost(skus)
+
 
 
 
