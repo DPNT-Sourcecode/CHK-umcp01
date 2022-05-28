@@ -31,7 +31,11 @@ COSTS: dict = {
     "D": {"cost": 15},
     "E": {
         "cost": 40,
-        "deals": {DealType.FREE_ITEM: [{"count": 2, "free_item_sku": "B"}], "cost": 30},
+        "deals": {DealType.FREE_ITEM: [{"count": 2, "free_item_sku": "B"}]},
+    },
+    "F": {
+        "cost": 10,
+        "deals": {DealType.FREE_ITEM: [{"count": 2, "free_item_sku": "F"}]},
     },
 }
 
@@ -119,3 +123,4 @@ def calculate_cost(code: str, count: int) -> int:
         return code_cost
 
     return count * cost_data["cost"]
+
