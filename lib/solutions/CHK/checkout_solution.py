@@ -146,8 +146,11 @@ class SKUData:
 
         total_cost = 0
         for code, count in code_counts.items():
+            if code == "GROUP_BUY":
+                total_cost += count
+                continue
             total_cost += self._calculate_sku_count_cost(code, count)
-        return total_cost + code_counts.get("GROUP_BUY", 0)
+        return total_cost
 
 
 def checkout(skus: str) -> int:
@@ -167,6 +170,7 @@ def checkout(skus: str) -> int:
 
     sku_data = SKUData()
     return sku_data.calculate_cost(skus)
+
 
 
 
