@@ -49,57 +49,115 @@
     },
     "H": {
         "cost": 10,
-        "deals":{"MULTI_BUY":[
-            {
-                "count": 5,
-                "cost": 45
-            },
-            {
-                "count": 10,
-                "cost": 80
-            }
-        ]}
+        "deals": {
+            "MULTI_BUY": [{
+                    "count": 5,
+                    "cost": 45
+                },
+                {
+                    "count": 10,
+                    "cost": 80
+                }
+            ]
+        }
     },
-    "I": {"cost": 35},
-    "J": {"cost": 60},
-    "K": {"cost": 60, "deals":{"MULTI_BUY":[{"count": 2, "cost": 150}]}},
-    "L": {"cost": 90},
-    "M": {"cost": 15},
-    "N": {"cost": 40, "deals": {"FREE_ITEM":[{"count": 3, "free_item_sku": "M"}]},
-    "O": {"cost": 10},
-    "P": {"cost": 50, "deals": {"MULTI_BUY":[{"count": 5, "cost": 200}]}},
-    "Q": {"cost": 30, "deals": {"MULTI_BUY":[{"count": 3, "cost": 80}]}},
-    "R": {"cost": 50, "deals": {"FREE_ITEM":[{"count": 3, "free_item_sku": "Q"}]},
-    "S": {"cost": 30},
-    "T": {"cost": 20},
-    "U": {"cost": 40, "deals": {"FREE_ITEM":[{"count": 4, "free_item_sku": "U"}]}},
-    "V": {"cost": 50, "deals": {"MULTI_BUY":[{"count": 2, "cost": 90}, {"count": 3, "cost": 130}]}},
-    "W": {"cost": 20},
-    "X": {"cost": 90},
-    "Y": {"cost": 10},
-    "Z": {"cost": 50}
+    "I": {
+        "cost": 35
+    },
+    "J": {
+        "cost": 60
+    },
+    "K": {
+        "cost": 60,
+        "deals": {
+            "MULTI_BUY": [{
+                "count": 2,
+                "cost": 150
+            }]
+        }
+    },
+    "L": {
+        "cost": 90
+    },
+    "M": {
+        "cost": 15
+    },
+    "N": {
+        "cost": 40,
+        "deals": {
+            "FREE_ITEM": [{
+                "count": 3,
+                "free_item_sku": "M"
+            }]
+        }
+    },
+    "O": {
+        "cost": 10
+    },
+    "P": {
+        "cost": 50,
+        "deals": {
+            "MULTI_BUY": [{
+                "count": 5,
+                "cost": 200
+            }]
+        }
+    },
+    "Q": {
+        "cost": 30,
+        "deals": {
+            "MULTI_BUY": [{
+                "count": 3,
+                "cost": 80
+            }]
+        }
+    },
+    "R": {
+        "cost": 50,
+        "deals": {
+            "FREE_ITEM": [{
+                "count": 3,
+                "free_item_sku": "Q"
+            }]
+        }
+    },
+    "S": {
+        "cost": 30
+    },
+    "T": {
+        "cost": 20
+    },
+    "U": {
+        "cost": 40,
+        "deals": {
+            "FREE_ITEM": [{
+                "count": 4,
+                "free_item_sku": "U"
+            }]
+        }
+    },
+    "V": {
+        "cost": 50,
+        "deals": {
+            "MULTI_BUY": [{
+                "count": 2,
+                "cost": 90
+            }, {
+                "count": 3,
+                "cost": 130
+            }]
+        }
+    },
+    "W": {
+        "cost": 20
+    },
+    "X": {
+        "cost": 90
+    },
+    "Y": {
+        "cost": 10
+    },
+    "Z": {
+        "cost": 50
+    }
 }
-
-
-
-| K    | 80    | 2K for 150             |
-| L    | 90    |                        |
-| M    | 15    |                        |
-| N    | 40    | 3N get one M free      |
-| O    | 10    |                        |
-| P    | 50    | 5P for 200             |
-| Q    | 30    | 3Q for 80              |
-| R    | 50    | 3R get one Q free      |
-| S    | 30    |                        |
-| T    | 20    |                        |
-| U    | 40    | 3U get one U free      |
-| V    | 50    | 2V for 90, 3V for 130  |
-| W    | 20    |                        |
-| X    | 90    |                        |
-| Y    | 10    |                        |
-| Z    | 50    |                        |
-+------+-------+------------------------+
-
-
-
-

@@ -27,7 +27,7 @@ class SKUData:
     data_file_path = Path(__file__).parent.absolute() / "sku_data.json"
 
     def __init__(self) -> None:
-        data = json.loads(self.data_file_path.read_bytes())
+        self.data = json.loads(self.data_file_path.read_bytes())
 
     def calculate_free_items(self, code_counts: dict) -> dict:
         """
@@ -55,7 +55,7 @@ class SKUData:
 
         return code_counts_calculated
 
-    def calculate_cost(self, code: str, count: int) -> int:
+    def calculate_sku_count_cost(self, code: str, count: int) -> int:
         """
         Calculates total cost of a certain count of a single sku code
         Including multiple-buy offers.
@@ -105,7 +105,7 @@ class SKUData:
 
         total_cost = 0
         for code, count in code_counts.items():
-            total_cost += self.calculate_cost(code, count)
+            total_cost += self.calculate_sku_count_cost(code, count)
         return total_cost
 
 
@@ -126,8 +126,3 @@ def checkout(skus: str) -> int:
 
     sku_data = SKUData()
     return sku_data.calculate_cost(skus)
-
-
-
-
-
