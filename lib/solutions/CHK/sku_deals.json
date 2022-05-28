@@ -1,0 +1,43 @@
+{
+    "MULTI_BUY": {
+        "A": [{
+            "count": 5,
+            "cost": 200
+        }, {
+            "count": 3,
+            "cost": 130
+        }],
+        "B": [{
+            "count": 2,
+            "cost": 45
+        }],
+        "H": [
+            {
+                "count": 10,
+                "cost": 80
+            },
+            {
+                "count": 5,
+                "cost": 45
+            }
+        ],
+        "K": [{
+                "count": 2,
+                "cost": 120
+            }]
+    },
+    "FREE_ITEM": {
+        "E": [{
+            "count": 2,
+            "free_item_sku": "B"
+        }],
+        "F": [{
+            "count": 3,
+            "free_item_sku": "F"
+        }],
+        "N": [{
+            "count": 3,
+            "free_item_sku": "M"
+        }]
+    }
+}
