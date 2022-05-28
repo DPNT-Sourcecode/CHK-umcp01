@@ -25,14 +25,15 @@ def checkout(skus: str) -> int:
     total_cost = 0
     for code, count in code_counts.items():
         cost_data = COSTS[code]
-        if cost_data.deal:
-            total_cost += ((count // cost_data.deal.count) * cost_data.deal.cost) + (
-                count % cost_data.deal.count
-            ) * cost_data.cost
+        if "deal" in cost_data:
+            total_cost += (
+                (count // cost_data["deal"]["count"]) * cost_data["deal"]["cost"]
+            ) + (count % cost_data["deal"]["count"]) * cost_data["cost"]
         else:
-            total_cost += count * cost_data.cost
+            total_cost += count * cost_data["cost"]
 
     return total_cost
+
 
 
 
