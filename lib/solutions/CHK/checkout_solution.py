@@ -40,22 +40,36 @@ def checkout(skus: str) -> int:
     total_cost = 0
     for code, count in code_counts.items():
         total_cost += calculate_cost(code, count)
-        cost_data: dict = COSTS[code]
-
-        if "deals" in cost_data:
-            remainder = count
-            for deal in cost_data["deals"]:
-                total_cost += (remainder // deal["count"]) * deal["cost"]
-                remainder = remainder % deal["count"]
-            total_cost += remainder * cost_data["cost"]
-
-        else:
-            total_cost += count * cost_data["cost"]
-
     return total_cost
 
 
-def calculate_cost(sku: str, count: int) -> int:
+def calculate_cost(code: str, count: int) -> int:
+    """
+    Calculates total cost of a certain count of a single sku code
+    Including multiple-buy offers.
+
+    :param code: the sku code to calculate cost for
+    :type code: str
+    :param count: the count of this sku code
+    :type count: int
+    :return: the total cost of this number of sku-code item
+             including discounts
+    :rtype: int
+    """
+    cost_data: dict = COSTS[code]
+
+    if "deals" in cost_data:
+        code_cost = 0
+        remainder = count
+        for deal in cost_data["deals"]:
+            code_cost += (remainder // deal["count"]) * deal["cost"]
+            remainder = remainder % deal["count"]
+        code_cost += remainder * cost_data["cost"]
+
+        return code_cost
+
+    return count * cost_data["cost"]
+
 
 
 
