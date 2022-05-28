@@ -8,7 +8,7 @@
 import copy
 import json
 from collections import defaultdict
-from itertools import permutations
+from itertools import product
 from pathlib import Path
 
 
@@ -58,7 +58,7 @@ class SKUData:
 
     def _calculate_group_buy(self, code_counts: dict):
         for group_buy in self.deals["GROUP_BUY"]:
-            for group_buy_ids in permutations(group_buy["ids"], group_buy["count"]):
+            for group_buy_ids in product(group_buy["ids"], group_buy["count"]):
                 if not all(x in code_counts.keys() for x in group_buy_ids):
                     continue
                 for id in group_buy_ids:
@@ -139,4 +139,5 @@ def checkout(skus: str) -> int:
 
     sku_data = SKUData()
     return sku_data.calculate_cost(skus)
+
 
