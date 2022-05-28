@@ -8,20 +8,14 @@
 import copy
 import json
 from collections import defaultdict
-from enum import Enum
 from pathlib import Path
-from collections import namedtuple
-
-
-class DealType:
-    free_item = "FREE_ITEM"
-    multi_buy = "MULTI_BUY"
 
 
 class SKUData:
-
     data: dict
     data_file_path = Path(__file__).parent.absolute() / "sku_data.json"
+
+    deal_types = {"free_item": "FREE_ITEM", "multi_buy": "MULTI_BUY"}
 
     def __init__(self) -> None:
         self.data = json.loads(self.data_file_path.read_bytes())
@@ -41,9 +35,12 @@ class SKUData:
 
         for code, count in code_counts.items():
             cost_data: dict = self.data[code]
-            if not ("deals" in cost_data and DealType.free_item in cost_data["deals"]):
+            if not (
+                "deals" in cost_data
+                and self.deal_types["free_item"] in cost_data["deals"]
+            ):
                 continue
-            for deal in cost_data["deals"][DealType.free_item]:
+            for deal in cost_data["deals"][self.deal_types["free_item"]]:
                 code_counts_calculated[deal["free_item_sku"]] = max(
                     0,
                     code_counts_calculated[deal["free_item_sku"]]
@@ -71,8 +68,8 @@ class SKUData:
             code_cost = 0
             remainder = count
             deals = cost_data["deals"]
-            if DealType.multi_buy in deals:
-                for deal in deals[DealType.multi_buy]:
+            if self.deal_types["multi_buy"] in deals:
+                for deal in deals[self.deal_types["multi_buy"]]:
                     code_cost += (remainder // deal["count"]) * deal["cost"]
                     remainder = remainder % deal["count"]
             code_cost += remainder * cost_data["cost"]
@@ -123,5 +120,6 @@ def checkout(skus: str) -> int:
 
     sku_data = SKUData()
     return sku_data.calculate_cost(skus)
+
 
 
