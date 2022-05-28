@@ -70,7 +70,7 @@ class SKUData:
         found_deal = False
         for group_buy in self.deals["GROUP_BUY"]:
             for group_buy_ids in product(group_buy["ids"], repeat=group_buy["count"]):
-                if not set(group_buy_ids).issubset(items):
+                if not all(x in items for x in group_buy_ids):
                     continue
 
                 found_deal = True
@@ -155,3 +155,4 @@ def checkout(skus: str) -> int:
 
     sku_data = SKUData()
     return sku_data.calculate_cost(skus)
+
