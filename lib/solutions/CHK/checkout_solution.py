@@ -8,6 +8,7 @@
 import copy
 from collections import defaultdict
 from enum import Enum
+import json
 
 
 class DealType(Enum):
@@ -17,27 +18,6 @@ class DealType(Enum):
 
     MULTI_BUY = 1
     FREE_ITEM = 2
-
-
-COSTS: dict = {
-    "A": {
-        "deals": {
-            DealType.MULTI_BUY: [{"count": 5, "cost": 200}, {"count": 3, "cost": 130}],
-        },
-        "cost": 50,
-    },
-    "B": {"deals": {DealType.MULTI_BUY: [{"count": 2, "cost": 45}]}, "cost": 30},
-    "C": {"cost": 20},
-    "D": {"cost": 15},
-    "E": {
-        "cost": 40,
-        "deals": {DealType.FREE_ITEM: [{"count": 2, "free_item_sku": "B"}]},
-    },
-    "F": {
-        "cost": 10,
-        "deals": {DealType.FREE_ITEM: [{"count": 3, "free_item_sku": "F"}]},
-    },
-}
 
 
 def checkout(skus: str) -> int:
@@ -51,6 +31,7 @@ def checkout(skus: str) -> int:
              or -1 if invalid input is detected
     :rtype: int
     """
+
     if not isinstance(skus, str):
         return -1
 
@@ -123,3 +104,4 @@ def calculate_cost(code: str, count: int) -> int:
         return code_cost
 
     return count * cost_data["cost"]
+
