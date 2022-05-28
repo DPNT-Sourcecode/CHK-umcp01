@@ -123,7 +123,3 @@ def calculate_cost(code: str, count: int) -> int:
         return code_cost
 
     return count * cost_data["cost"]
-
-
-
-
