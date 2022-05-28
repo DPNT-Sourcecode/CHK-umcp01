@@ -35,7 +35,11 @@ COSTS: dict = {
     },
     "F": {
         "cost": 10,
-        "deals": {DealType.FREE_ITEM: [{"count": 3, "free_item_sku": "F"}]},
+        "deals": {
+            DealType.FREE_ITEM: [
+                {"initial_requirement": 3, "count": 2, "free_item_sku": "F"}
+            ]
+        },
     },
 }
 
@@ -87,6 +91,9 @@ def calculate_free_items(code_counts: dict) -> dict:
         if not ("deals" in cost_data and DealType.FREE_ITEM in cost_data["deals"]):
             continue
         for deal in cost_data["deals"][DealType.FREE_ITEM]:
+            initial_requirement = deal.get("initial_requirement")
+            if initial_requirement and count < initial_requirement:
+                continue
             code_counts_calculated[deal["free_item_sku"]] = max(
                 0,
                 code_counts_calculated[deal["free_item_sku"]] - count // deal["count"],
@@ -123,5 +130,6 @@ def calculate_cost(code: str, count: int) -> int:
         return code_cost
 
     return count * cost_data["cost"]
+
 
 
