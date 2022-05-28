@@ -23,7 +23,9 @@ def test_prices(skus, expected):
     assert checkout(skus) == expected
 
 
-@pytest.mark.parametrize("skus,expected", [("AAA", 130), ("BB", 45), ("AAAAA", 230), ("BBB", 75)])
+@pytest.mark.parametrize(
+    "skus,expected", [("AAA", 130), ("BB", 45), ("AAAAA", 230), ("BBB", 75)]
+)
 def test_offers(skus, expected):
     assert checkout(skus) == expected
 
@@ -34,3 +36,4 @@ def test_invalid_input():
 
 def test_invalid_input_type():
     assert checkout(1) == -1
+

@@ -4,11 +4,12 @@
 from collections import defaultdict
 
 COSTS = {
-    "A": {"deal": {"count": 3, "value": 130}, "cost": 50},
-    "B": {"deal": {"count": 2, "value": 45}, "cost": 30},
+    "A": {"deal": {"count": 3, "cost": 130}, "cost": 50},
+    "B": {"deal": {"count": 2, "cost": 45}, "cost": 30},
     "C": {"cost": 20},
-    "D": {"cost": 15}
+    "D": {"cost": 15},
 }
+
 
 def checkout(skus: str) -> int:
     if not isinstance(skus, str):
@@ -23,12 +24,15 @@ def checkout(skus: str) -> int:
 
     total_cost = 0
     for code, count in code_counts.items():
-        deal_cost = COSTS[code] /
-        total_cost +=
+        cost_data = COSTS[code]
+        if cost_data.deal:
+            total_cost += ((count // cost_data.deal.count) * cost_data.deal.cost) + (
+                count % cost_data.deal.count
+            ) * cost_data.cost
+        else:
+            total_cost += count * cost_data.cost
 
-
-
-    raise NotImplementedError()
+    return total_cost
 
 
 
