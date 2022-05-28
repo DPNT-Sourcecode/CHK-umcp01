@@ -34,5 +34,3 @@ def test_invalid_input():
 
 def test_invalid_input_type():
     assert checkout(1) == -1
-
-

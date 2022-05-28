@@ -22,4 +22,3 @@ def hello(friend_name: str) -> str:
         raise ValueError("friend_name must not be empty.")
 
     return f"Hello, {friend_name}!"
-

@@ -1,4 +1,14 @@
 # noinspection PyUnusedLocal
 # skus = unicode string
-def checkout(skus):
+
+VALID_INPUT = (
+    "A",
+    "B",
+    "C",
+    "D"
+)
+def checkout(skus: str) -> int:
+    if not isinstance(skus, str):
+        return -1
     raise NotImplementedError()
+
