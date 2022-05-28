@@ -5,7 +5,6 @@
 # noinspection PyUnusedLocal
 # skus = unicode string
 
-import code
 import copy
 import json
 from collections import defaultdict
@@ -78,8 +77,8 @@ class SKUData:
                 for id in group_buy_ids:
                     if id in check_ids:
                         check_ids.remove(id)
-                    else:
-                        ids_verified = False
+                        continue
+                    ids_verified = False
 
                 if not ids_verified:
                     continue
@@ -88,8 +87,6 @@ class SKUData:
                 for id in group_buy_ids:
                     calculated_items.remove(id)
                     code_counts[id] = code_counts[id] - 1
-                    if code_counts[id] <= 0:
-                        code_counts.pop(id)
                 code_counts["GROUP_BUY"] += 45
 
         if found_deal:
@@ -170,12 +167,3 @@ def checkout(skus: str) -> int:
 
     sku_data = SKUData()
     return sku_data.calculate_cost(skus)
-
-
-
-
-
-
-
-
-

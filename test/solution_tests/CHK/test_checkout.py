@@ -73,7 +73,8 @@ def test_prices(skus, expected):
         ("VV", 90),
         ("VVV", 130),
         ("STXYZ", 82),
-        ("STXYZZ", 164),
+        ("STXYZZ", 90),
+        ("STXYZZZ", 107),
     ],
 )
 def test_offers(skus, expected):
@@ -95,5 +96,3 @@ def test_invalid_input_type():
     Tests that incorrect input types return -1
     """
     assert checkout(1) == -1
-
-
