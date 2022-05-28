@@ -9,13 +9,20 @@ from collections import defaultdict
 from typing import DefaultDict
 from enum import Enum
 
+
 class DealType(Enum):
-    MULTI_BUY = 1,
-    FREE_ITEM = 2,
+    MULTI_BUY = (1,)
+    FREE_ITEM = (2,)
+
 
 COSTS: dict = {
-    "A": {"deals": {[{"type": "count": 5, "cost": 200}, {"count": 3, "cost": 130}]}, "cost": 50},
-    "B": {"deals": [{"count": 2, "cost": 45}], "cost": 30},
+    "A": {
+        "deals": {
+            DealType.MULTI_BUY: [{"count": 5, "cost": 200}, {"count": 3, "cost": 130}],
+        },
+        "cost": 50,
+    },
+    "B": {"deals": {DealType.MULTI_BUY: [{"count": 2, "cost": 45}]}, "cost": 30},
     "C": {"cost": 20},
     "D": {"cost": 15},
 }
@@ -74,3 +81,4 @@ def calculate_cost(code: str, count: int) -> int:
         return code_cost
 
     return count * cost_data["cost"]
+
