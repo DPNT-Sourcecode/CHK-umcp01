@@ -64,7 +64,7 @@ class SKUData:
                 for id in group_buy_ids:
                     code_counts[id] = code_counts[id] - 1
                     if code_counts[id] <= 0:
-                        code_counts.erase(id)
+                        code_counts.pop(id)
                 self._calculate_group_buy(code_counts)
 
     def _calculate_multi_buy(self, code: str, count: int):
@@ -139,6 +139,7 @@ def checkout(skus: str) -> int:
 
     sku_data = SKUData()
     return sku_data.calculate_cost(skus)
+
 
 
 
