@@ -20,14 +20,13 @@ from solutions.HLO import hello_solution
 #         hello_solution.hello("")
 
 
-def test_correct_output(capfd):
+def test_correct_output():
     """
     tests that the printed output is correct
     """
-    hello_solution.hello("William")
-    out, err = capfd.readouterr()
-    assert out == "Hello World!\n"
-    assert err == ""
+    out = hello_solution.hello("William")
+    assert out == "Hello World!"
+
 
 
 
