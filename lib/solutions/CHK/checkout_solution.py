@@ -8,6 +8,7 @@
 from collections import defaultdict
 from enum import Enum
 from typing import DefaultDict
+import copy
 
 
 class DealType(Enum):
@@ -73,6 +74,9 @@ def calculate_free_items(code_counts: DefaultDict):
     :param code_counts: a dictionary of code SKU to count pairs
     :type code_counts: DefaultDict
     """
+
+    code_counts = copy.deepcopy(code_counts)
+
     for code, count in code_counts.items():
         cost_data: dict = COSTS[code]
         if not ("deals" in cost_data and DealType.FREE_ITEM in cost_data["deals"]):
@@ -111,6 +115,7 @@ def calculate_cost(code: str, count: int) -> int:
         return code_cost
 
     return count * cost_data["cost"]
+
 
 
 
