@@ -6,7 +6,9 @@ import pytest
 from solutions.CHK.checkout_solution import checkout
 
 
-@pytest.mark.parametrize("skus,expected", [("A", 50), ("B", 30), ("C", 20), ("D", 15)])
+@pytest.mark.parametrize(
+    "skus,expected", [("A", 50), ("B", 30), ("C", 20), ("D", 15), ("E", 40)]
+)
 def test_prices(skus, expected):
     """
     Tests that valid SKU codes return their expected costs
@@ -24,6 +26,7 @@ def test_prices(skus, expected):
         ("AAAAAAAAA", 380),
         ("BB", 45),
         ("BBB", 75),
+        ("EEBBB", 140),
     ],
 )
 def test_offers(skus, expected):
@@ -45,3 +48,4 @@ def test_invalid_input_type():
     Tests that incorrect input types return -1
     """
     assert checkout(1) == -1
+
