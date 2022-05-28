@@ -53,6 +53,19 @@ class SKUData:
 
         return code_counts_calculated
 
+    def _calculate_group_buy(self, code_counts: dict):
+
+    def _calculate_multi_buy(self, code: str, count: int):
+        cost_data: dict = self.data[code]
+        code_cost = 0
+        remainder = count
+        for deal in self.deals[self.deal_types["multi_buy"]][code]:
+            code_cost += (remainder // deal["count"]) * deal["cost"]
+            remainder = remainder % deal["count"]
+        code_cost += remainder * cost_data["cost"]
+
+        return code_cost
+
     def _calculate_sku_count_cost(self, code: str, count: int) -> int:
         """
         Calculates total cost of a certain count of a single sku code
@@ -66,18 +79,10 @@ class SKUData:
                 including discounts
         :rtype: int
         """
-        cost_data: dict = self.data[code]
-
         if code in self.deals[self.deal_types["multi_buy"]]:
-            code_cost = 0
-            remainder = count
-            for deal in self.deals[self.deal_types["multi_buy"]][code]:
-                code_cost += (remainder // deal["count"]) * deal["cost"]
-                remainder = remainder % deal["count"]
-            code_cost += remainder * cost_data["cost"]
+            return _calculate_multi_buy(code, count)
 
-            return code_cost
-
+        cost_data: dict = self.data[code]
         return count * cost_data["cost"]
 
     def calculate_cost(self, skus) -> int:
@@ -122,6 +127,7 @@ def checkout(skus: str) -> int:
 
     sku_data = SKUData()
     return sku_data.calculate_cost(skus)
+
 
 
 
