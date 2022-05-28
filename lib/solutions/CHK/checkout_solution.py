@@ -58,7 +58,6 @@ class SKUData:
         return code_counts_calculated
 
     def _calculate_group_buy(self, code_counts: dict, items: list = None) -> bool:
-
         if not items:
             items = []
             for sku, count in code_counts.items():
@@ -67,6 +66,7 @@ class SKUData:
 
         if not items or len(items) < 3:
             return
+
         found_deal = False
         for group_buy in self.deals["GROUP_BUY"]:
             for group_buy_ids in product(group_buy["ids"], repeat=group_buy["count"]):
@@ -75,6 +75,7 @@ class SKUData:
 
                 found_deal = True
                 for id in group_buy_ids:
+                    items.remove(id)
                     code_counts[id] = code_counts[id] - 1
                     if code_counts[id] <= 0:
                         code_counts.pop(id)
@@ -154,11 +155,3 @@ def checkout(skus: str) -> int:
 
     sku_data = SKUData()
     return sku_data.calculate_cost(skus)
-
-
-
-
-
-
-
-
