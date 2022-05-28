@@ -7,9 +7,11 @@
 
 from collections import defaultdict
 from typing import DefaultDict
+from enum import Enum
+
 
 COSTS: dict = {
-    "A": {"deals": [{"count": 5, "cost": 200}, {"count": 3, "cost": 130}], "cost": 50},
+    "A": {"deals": [{"type": "count": 5, "cost": 200}, {"count": 3, "cost": 130}], "cost": 50},
     "B": {"deals": [{"count": 2, "cost": 45}], "cost": 30},
     "C": {"cost": 20},
     "D": {"cost": 15},
@@ -69,6 +71,7 @@ def calculate_cost(code: str, count: int) -> int:
         return code_cost
 
     return count * cost_data["cost"]
+
 
 
 
