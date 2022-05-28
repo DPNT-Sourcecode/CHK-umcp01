@@ -4,7 +4,6 @@
 
 
 """
-    Our price table and offers:
     +------+-------+----------------+
     | Item | Price | Special offers |
     +------+-------+----------------+
@@ -24,7 +23,16 @@ def test_prices(skus, expected):
     assert checkout(skus) == expected
 
 
-@pytest.mark.parametrize("skus,expected", [("AAA", 130), ("BB", 45)])
+@pytest.mark.parametrize("skus,expected", [("AAA", 130), ("BB", 45), ("AAAAA", 230), ("BBB", 75)])
 def test_offers(skus, expected):
     assert checkout(skus) == expected
+
+
+def test_invalid_input():
+    assert checkout("aIp@;") == -1
+
+
+def test_invalid_input_type():
+    assert checkout(1) == -1
+
 
