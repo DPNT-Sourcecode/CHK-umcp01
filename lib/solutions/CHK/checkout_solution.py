@@ -65,18 +65,22 @@ class SKUData:
                 for _ in range(count):
                     items.append(sku)
 
-        if not items:
+        if not items or len(items) < 3:
             return
-
+        found_deal = False
         for group_buy in self.deals["GROUP_BUY"]:
             for group_buy_ids in product(group_buy["ids"], repeat=group_buy["count"]):
                 if not set(group_buy_ids).issubset(items):
                     continue
+
+                found_deal = True
                 for id in group_buy_ids:
                     code_counts[id] = code_counts[id] - 1
                     if code_counts[id] <= 0:
                         code_counts.pop(id)
-        self._calculate_group_buy(code_counts, items)
+
+        if found_deal and len(items) > 2:
+            self._calculate_group_buy(code_counts, items)
 
     def _calculate_multi_buy(self, code: str, count: int):
         cost_data: dict = self.data[code]
@@ -150,6 +154,7 @@ def checkout(skus: str) -> int:
 
     sku_data = SKUData()
     return sku_data.calculate_cost(skus)
+
 
 
 
