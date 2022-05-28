@@ -6,13 +6,16 @@
 # skus = unicode string
 
 from collections import defaultdict
-from typing import DefaultDict
 from enum import Enum
+from typing import DefaultDict
 
 
 class DealType(Enum):
-    MULTI_BUY = (1,)
-    FREE_ITEM = (2,)
+    """
+    Enum that stores the various types of offer available at checkout
+    """
+    MULTI_BUY = 1
+    FREE_ITEM = 2
 
 
 COSTS: dict = {
@@ -73,12 +76,15 @@ def calculate_cost(code: str, count: int) -> int:
     if "deals" in cost_data:
         code_cost = 0
         remainder = count
-        for deal in cost_data["deals"]:
-            code_cost += (remainder // deal["count"]) * deal["cost"]
-            remainder = remainder % deal["count"]
+        deals = cost_data["deals"]
+        if DealType.MULTI_BUY in deals:
+            for deal in deals[DealType.MULTI_BUY]:
+                code_cost += (remainder // deal["count"]) * deal["cost"]
+                remainder = remainder % deal["count"]
         code_cost += remainder * cost_data["cost"]
 
         return code_cost
 
     return count * cost_data["cost"]
+
 
