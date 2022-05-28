@@ -3,6 +3,7 @@
 """
 # noinspection PyUnusedLocal
 # friend_name = unicode string
+# pylint: disable=unused-argument
 def hello(friend_name) -> None:
     """
     Prints a greeting in the format "Hello World!"
@@ -10,5 +11,6 @@ def hello(friend_name) -> None:
     :param friend_name: ignored!
     :type friend_name: any
     """
-    print(f"Hello World!")
+    print("Hello World!")
+
 
