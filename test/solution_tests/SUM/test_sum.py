@@ -35,8 +35,3 @@ def test_invalid_input_type():
     """
     with pytest.raises(ValueError):
         sum_solution.compute("two", "one")
-
-
-
-
-
