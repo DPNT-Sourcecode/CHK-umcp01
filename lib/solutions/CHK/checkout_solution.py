@@ -31,7 +31,8 @@ def checkout(skus: str) -> int:
              or -1 if invalid input is detected
     :rtype: int
     """
-
+    f = open("sku_data.json")
+    sku_data = json.load(f)
     if not isinstance(skus, str):
         return -1
 
@@ -104,4 +105,5 @@ def calculate_cost(code: str, count: int) -> int:
         return code_cost
 
     return count * cost_data["cost"]
+
 
