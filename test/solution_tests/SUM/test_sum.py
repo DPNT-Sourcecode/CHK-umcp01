@@ -1,3 +1,7 @@
+"""
+    Contains a test class for the solutions.SUM module
+"""
+
 import pytest
 from solutions.SUM import sum_solution
 
@@ -13,5 +17,6 @@ class TestSum:
     def test_input_greater_than_100(self):
         with pytest.raises(ValueError):
             sum_solution.compute(101, 2)
+
 
 
