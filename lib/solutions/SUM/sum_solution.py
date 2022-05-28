@@ -16,17 +16,23 @@ def compute(number_1: int, number_2: int) -> int:
     :return: The sum of the two numbers.
     :rtype: int
     """
+
     if not isinstance(number_1, int):
         raise ValueError(f"number_1: ({number_1}) must be an integer.")
 
     if not isinstance(number_2, int):
-        raise ValueError(f"number_1: ({number_1}) must be an integer.")
+        raise ValueError(f"number_2: ({number_2}) must be an integer.")
 
     if number_1 > 100 or number_1 < 0:
-        raise ValueError(f"number_1: ({number_1}) must be greater than 0 and less than 100.")
+        raise ValueError(
+            f"number_1: ({number_1}) must be greater than 0 and less than 100."
+        )
 
     if number_2 > 100 or number_2 < 0:
-        raise ValueError(f"number_2: ({number_2}) must be greater than 0 and less than 100.")
+        raise ValueError(
+            f"number_2: ({number_2}) must be greater than 0 and less than 100."
+        )
 
     return number_1 + number_2
+
 
