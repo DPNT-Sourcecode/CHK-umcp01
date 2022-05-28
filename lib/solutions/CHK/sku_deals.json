@@ -1,8 +1,8 @@
 {
-    "GROUP_BUY": {
+    "GROUP_BUY": [{
         "ids": ["S","T","X","Y","Z"],
         "cost": 45
-    },
+    }],
     "MULTI_BUY": {
         "A": [{
             "count": 5,
@@ -67,5 +67,6 @@
         }]
     }
 }
+
 
 
