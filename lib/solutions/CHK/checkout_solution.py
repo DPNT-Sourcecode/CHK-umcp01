@@ -6,8 +6,9 @@
 # skus = unicode string
 
 from collections import defaultdict
+from typing import DefaultDict
 
-COSTS = {
+COSTS : dict = {
     "A": {"deal": {"count": 3, "cost": 130}, "cost": 50},
     "B": {"deal": {"count": 2, "cost": 45}, "cost": 30},
     "C": {"cost": 20},
@@ -29,16 +30,16 @@ def checkout(skus: str) -> int:
     if not isinstance(skus, str):
         return -1
 
-    code_counts = defaultdict(int)
+    code_counts: DefaultDict = defaultdict(int)
 
     for code in skus:
-        if not code in COSTS.keys():
+        if not code in COSTS:
             return -1
         code_counts[code] += 1
 
     total_cost = 0
     for code, count in code_counts.items():
-        cost_data = COSTS[code]
+        cost_data: dict = COSTS[code]
         if "deal" in cost_data:
             total_cost += (
                 (count // cost_data["deal"]["count"]) * cost_data["deal"]["cost"]
@@ -47,6 +48,7 @@ def checkout(skus: str) -> int:
             total_cost += count * cost_data["cost"]
 
     return total_cost
+
 
 
 
